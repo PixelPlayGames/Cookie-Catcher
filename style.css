@@ -1,0 +1,470 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Fredoka', Arial, sans-serif;
+  background: linear-gradient(135deg, #8de3ff, #d9c9ff, #ffe0ed);
+}
+
+.game {
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+  border: 5px solid white;
+  border-radius: 28px;
+  background: #fffaf2;
+  box-shadow: 0 18px 50px #536b9a44;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  font-size: 43px;
+}
+
+h1 {
+  margin: 0;
+  color: #70452c;
+  font-size: 27px;
+}
+
+.brand p {
+  margin: 3px 0 0;
+  color: #a17a5e;
+  font-size: 13px;
+}
+
+.stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: #fff0d8;
+  color: #70452c;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+}
+
+.stat b {
+  margin-left: 5px;
+}
+
+.game-area {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 19px;
+  background: #9ce7ff;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  background: linear-gradient(#5cc8f2b8, #a6a4f0cc);
+}
+
+.menu-content {
+  width: 100%;
+  max-width: 420px;
+  color: white;
+  animation: appear 0.7s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cookie-hero {
+  font-size: 75px;
+  animation: bounce 1.5s infinite ease-in-out;
+  filter: drop-shadow(0 7px 4px #0002);
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-12px) rotate(8deg); }
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin: 5px 0;
+}
+
+.menu-content h2 {
+  font-size: clamp(40px, 7vw, 67px);
+  line-height: .95;
+  margin: 10px 0;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 5px 0 #8b6ad4;
+}
+
+.menu-content h2 span {
+  color: #ffe477;
+}
+
+.menu-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 15px 0 22px;
+  text-shadow: 0 1px 3px #4445;
+}
+
+.main-button {
+  display: block;
+  width: 220px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  border: 4px solid white;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ffb83f, #ff803f);
+  color: white;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 7px 0 #ce6637, 0 10px 20px #0002;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+}
+
+.main-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 0 #ce6637;
+}
+
+.main-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 3px 0 #ce6637;
+}
+
+.main-button span {
+  margin-left: 8px;
+}
+
+.tip {
+  margin-top: 22px;
+  font-size: 13px;
+  color: white;
+  font-weight: 600;
+}
+
+.game-over {
+  display: none;
+  background: #422c68dd;
+}
+
+.game-over.show {
+  display: flex;
+}
+
+.final-score {
+  font-size: 48px;
+  color: #ffe477;
+  font-weight: 700;
+  margin: 10px 0 20px;
+}
+
+.instructions {
+  text-align: center;
+  color: #8a674f;
+  font-size: 13px;
+  margin: 15px 0 0;
+}
+
+/* GAME OVER SCREEN */
+#gameOver .menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+#gameOver h2 {
+  font-size: 28px;
+  line-height: 1.1;
+  margin: 4px 0;
+}
+
+#gameOver p {
+  font-size: 14px;
+  margin: 3px 0;
+}
+
+#finalScore {
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 4px 0;
+  overflow-wrap: anywhere;
+}
+
+#gameOver .cookie-hero {
+  font-size: 38px;
+  margin: 2px 0;
+}
+
+#restart {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 30;
+  font-size: 15px;
+  padding: 10px 22px;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* TABLETS */
+@media (max-width: 768px) {
+  body {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .game {
+    padding: 14px;
+    border-width: 4px;
+    border-radius: 22px;
+  }
+
+  .topbar {
+    gap: 10px;
+  }
+
+  .brand-icon {
+    font-size: 34px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+
+  .stats {
+    gap: 7px;
+  }
+
+  .stat {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+/* MOBILE PHONES */
+@media (max-width: 550px) {
+  body {
+    min-height: 100dvh;
+    padding: 5px;
+    align-items: flex-start;
+  }
+
+  .game {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    border-width: 3px;
+    border-radius: 16px;
+  }
+
+  .topbar {
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 8px;
+  }
+
+  .brand {
+    justify-content: center;
+    gap: 7px;
+  }
+
+  .brand-icon {
+    font-size: 29px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .brand p {
+    font-size: 10px;
+  }
+
+  .stats {
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .stat {
+    padding: 6px 8px;
+    border-radius: 9px;
+    font-size: 11px;
+  }
+
+  .stat b {
+    margin-left: 2px;
+  }
+
+  .game-area {
+    border-radius: 12px;
+  }
+
+  .overlay {
+    padding: 5px;
+  }
+
+  .menu-content {
+    max-width: 100%;
+  }
+
+  .cookie-hero {
+    font-size: 40px;
+  }
+
+  .eyebrow {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .menu-content h2 {
+    font-size: clamp(25px, 8vw, 38px);
+    line-height: 1;
+    margin: 5px 0;
+  }
+
+  .menu-content p {
+    font-size: 10px;
+    line-height: 1.3;
+    margin: 6px 0 10px;
+  }
+
+  .main-button {
+    width: min(170px, 85%);
+    padding: 9px 12px;
+    border-width: 3px;
+    font-size: 15px;
+  }
+
+  .tip {
+    margin-top: 9px;
+    font-size: 10px;
+  }
+
+  .instructions {
+    font-size: 10px;
+    margin: 8px 0 0;
+  }
+
+  #gameOver .menu-content {
+    gap: 3px;
+    padding: 4px;
+  }
+
+  #gameOver h2 {
+    font-size: 21px;
+  }
+
+  #gameOver p {
+    font-size: 10px;
+  }
+
+  #finalScore {
+    font-size: 17px;
+  }
+
+  #gameOver .cookie-hero {
+    font-size: 27px;
+  }
+
+  #restart {
+    font-size: 12px;
+    padding: 7px 15px;
+    margin-top: 3px;
+  }
+}
+
+/* VERY SMALL PHONES */
+@media (max-width: 380px) {
+  body {
+    padding: 3px;
+  }
+
+  .game {
+    padding: 5px;
+  }
+
+  .brand-icon {
+    font-size: 24px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .stat {
+    padding: 5px 6px;
+    font-size: 10px;
+  }
+
+  .menu-content h2 {
+    font-size: 25px;
+  }
+
+  .menu-content p {
+    font-size: 9px;
+  }
+
+  .cookie-hero {
+    font-size: 32px;
+  }
+}
