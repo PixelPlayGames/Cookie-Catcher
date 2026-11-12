@@ -9,6 +9,16 @@ const gameOver = document.getElementById("gameOver");
 const finalScore = document.getElementById("finalScore");
 const playButton = document.getElementById("playButton");
 
+// GOOGLE ANALYTICS GAME TRACKING
+function trackGameEvent(eventName, extraParams = {}) {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", eventName, {
+      game_name: "cookie_catcher",
+      ...extraParams
+    });
+  }
+}
+
 // GAME VARIABLES
 let score = 0;
 let lives = 3;
@@ -1179,6 +1189,9 @@ function startGame() {
   running = true;
   shieldActive = false;
 
+  // Track every new game and restart.
+  trackGameEvent("game_start");
+
   // Reset special basket powers at the start of each game.
   oceanCooldown = 0;
   royalCooldown = 0;
@@ -1231,6 +1244,12 @@ function endGame() {
   }
 
   finalScore.textContent = score;
+
+  // Track the completed game and its final score and level.
+  trackGameEvent("game_over", {
+    score: score,
+    level: level
+  });
 
   if (newRecord) {
     finalScore.textContent += " 🏆 NEW HIGH SCORE!";
